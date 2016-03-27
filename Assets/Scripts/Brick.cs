@@ -22,6 +22,10 @@ public class Brick : MonoBehaviour {
     //if you do not use this ienumerator the ball will sometimes go right through the brick without bouncing off.
     IEnumerator DestroyBrick()
     {
+        GameObject particle = (GameObject)Instantiate(GameObject.Find("ElectricParticles"), transform.position, Quaternion.identity);
+        particle.transform.position = transform.position;
+        Destroy(particle, 5);
+
         yield return null;
 
         //this destroys the brick
@@ -31,7 +35,7 @@ public class Brick : MonoBehaviour {
     void OnDestroy()
     {
         //print((this.transform.parent.childCount - 1) + " Bricks Left");
-        if (GameObject.Find("Brick Holder").transform.childCount > 0)
+        if (GameObject.Find("Brick Holder") != null && GameObject.Find("Brick Holder").transform.childCount > 0)
         {
             print((GameObject.Find("Brick Holder").transform.childCount - 1) + " Bricks left");
         }
