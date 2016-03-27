@@ -9,8 +9,11 @@ public class Ball : MonoBehaviour {
     //this runs as soon as the scene starts
     void Start()
     {
+
+
         //this sets the rigidbody of the ball to the ball speed on start, then once set it stays set.
         GetComponent<Rigidbody2D>().velocity = Vector2.up * ballSpeed;
+		//GetComponent<Rigidbody2D>().velocity = Vector2.down * ballSpeed; 
     }
 
     //this is a custom function to determine how far along the ball hit the paddle

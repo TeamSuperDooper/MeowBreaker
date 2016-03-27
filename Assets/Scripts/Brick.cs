@@ -16,9 +16,9 @@ public class Brick : MonoBehaviour {
     //if you do not use this ienumerator the ball will sometimes go right through the brick without bouncing off.
     IEnumerator DestroyBrick()
     {
-        yield return null;
+		yield return null;
 
-        //this destroys the brick
+		//this destroys the brick
         Destroy(gameObject);
     }
 }
