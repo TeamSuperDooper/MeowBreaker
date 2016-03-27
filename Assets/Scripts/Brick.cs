@@ -31,7 +31,10 @@ public class Brick : MonoBehaviour {
     void OnDestroy()
     {
         //print((this.transform.parent.childCount - 1) + " Bricks Left");
-        print((GameObject.Find("Brick Holder").transform.childCount - 1) + " Bricks left");
+        if (GameObject.Find("Brick Holder").transform.childCount > 0)
+        {
+            print((GameObject.Find("Brick Holder").transform.childCount - 1) + " Bricks left");
+        }
     }
 
     //Super kitty destroy all bricks in path
