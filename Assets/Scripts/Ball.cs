@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class Ball : MonoBehaviour {
 
     //set the movement speed of the ball
     public float ballSpeed = 100.0f;
+
+	public AudioMixerSnapshot DyingKitty;
+	public AudioMixerSnapshot BackgroundMusic;
 
     //this runs as soon as the scene starts
     void Start()
@@ -40,7 +44,28 @@ public class Ball : MonoBehaviour {
             //this gets the velocity of the ball and changes it based on how it hit the paddle.
             GetComponent<Rigidbody2D>().velocity = dir * ballSpeed;
         }
+
+		//if the ball collides with a gameobject with the name Paddle the code inside will run
+		if (collision.gameObject.name == "BorderBottom")
+		{
+			AudioSource[] audio = GameObject.Find ("FX Sounds").GetComponents<AudioSource> ();
+			//AudioSourcse catNoise = audio [0];
+			audio[0].Play(0);
+			audio [1].Stop();
+			StartCoroutine(DestroyBall());
+		}
     }
+
+	//this waits 1 frame then destroys the ball.
+	IEnumerator DestroyBall()
+	{
+		yield return null;
+
+		//this destroys the ball
+		Destroy(gameObject);
+	}
+
+
 
     
 }
